@@ -1,21 +1,25 @@
 import React, {useState} from 'react'
 export default function TextForms(props) {
     const handleUpClick = ()=>{
-        console.log("Uppercase was Clicked" + text)
+        console.log("Uppercase was Clicked: " + text)
         let newText = text.toUpperCase();
         setText(newText)
+        props.showAlert("Converted to Uppercase!!", "success")
     }
     const handleLoClick = ()=>{
         let newText = text.toLocaleLowerCase();
         setText(newText)
+        props.showAlert("Converted to Lowercase!!", "success")
     }
     const handleClearClick = ()=>{
         let newText = ('');
         setText(newText)
+        props.showAlert("All the text has been Cleared!!", "success")
     }
     const handleExtraSpaces = ()=>{
         let newText = text.split(/[ ]+/);
         setText(newText.join(" "))
+        props.showAlert("Extra Spaces has been removed!!", "success")
     }
     const handleOnChange = (event)=>{
         console.log("Uppercase was Clicked")
@@ -25,14 +29,15 @@ export default function TextForms(props) {
         var text = document.getElementById("exampleFormControlTextarea1");
         text.select();
         navigator.clipboard.writeText(text.value);
+        props.showAlert("Text has been copied to the ClipBoard!!", "success")
     }
-    const [text, setText] = useState('Enter your Text here!')
+    const [text, setText] = useState('')
     return (
         <>
-        <div className="container">
+        <div className="container" style={{color: props.mode==='dark'?'white':'#1e0465'}}>
             <div className="mb-3">
-                <h2>{props.heading}</h2>
-                <textarea className="form-control" id="exampleFormControlTextarea1" rows="10" value={text} onChange={handleOnChange}></textarea>
+                <h2 >{props.heading}</h2>
+                <textarea className="form-control" id="exampleFormControlTextarea1" rows="10" value={text} onChange={handleOnChange} style={{backgroundColor: props.mode==='light'?'white':'grey', color:props.mode==='dark'?'white':'#1e0465'}}></textarea>
             </div>
             <button className="btn btn-primary mx-1" onClick={handleUpClick} >Convert to Uppercase</button>
             <button className="btn btn-primary mx-1" onClick={handleLoClick} >Convert to Lowercase</button>
@@ -40,12 +45,12 @@ export default function TextForms(props) {
             <button className="btn btn-primary mx-1" onClick={handleOnCopy} >Copy your Text</button>
             <button className="btn btn-primary mx-1" onClick={handleExtraSpaces} >Remove Extra Spaces</button>
         </div>
-        <div className="container my-4">
+        <div className="container my-4" style={{color: props.mode==='dark'?'white':'#1e0465'}}>
             <h3>Your Text Summary!!</h3>
             <p>{text.split(" ").length} Words and {text.length} Characters</p>
             <p>{0.008 * text.split(" ").length} Average Minutes Read!!</p>
             <h3>Text Preview</h3>
-            <p>{text}</p>
+            <p>{text.length>0?text:"Enter something in the text box above to prevuiew it here!"}</p>
         </div>
         </>
     )
