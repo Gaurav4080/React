@@ -38,6 +38,7 @@ function App() {
     }
   }
   return (
+    // Things needs to be wrapped up here.
     <>
     <Router>
     <NavBar title="TextCleaner" mode = {mode} toggleMode={toggleMode}/>
