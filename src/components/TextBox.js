@@ -19,7 +19,7 @@ export default function TextForms(props) {
     const handleExtraSpaces = ()=>{
         let newText = text.split(/[ ]+/);
         setText(newText.join(" "))
-        props.showAlert("Extra Spaces has been removed!!", "success")
+        props.showAlert("Extra Spaces has been Removed!!", "success")
     }
     const handleOnChange = (event)=>{
         console.log("Uppercase was Clicked")

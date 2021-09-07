@@ -1,14 +1,13 @@
-import About from "./components/About";
+// import About from "./components/About";
 import NavBar from "./components/NavBar";
 import TextBox from "./components/TextBox";
 import React, { useState } from 'react';
 import Alert from "./components/Alert";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Link,
-  Route
-} from "react-router-dom";
+// import {
+//   BrowserRouter as Router,
+//   Switch,
+//   Route
+// } from "react-router-dom";
 
 function App() {
   const [mode, setMode] = useState('light');
@@ -40,22 +39,22 @@ function App() {
   return (
     // Things needs to be wrapped up here.
     <>
-    <Router>
+    {/* <Router> */}
     <NavBar title="TextCleaner" mode = {mode} toggleMode={toggleMode}/>
     <Alert alert ={alert}/>
     <div className="container my-3">
-    <Switch>
+    {/* <Switch> */}
       {/* /users --> Component 1
       /users/home --> Component 2 */}
-          <Route exact path="/about">
+          {/* <Route exact path="/about">
             <About />
-          </Route>
-          <Route exact path="/">
+          </Route> */}
+          {/* <Route exact path="/"> */}
             <TextBox showAlert={showAlert} heading="Enter the Text to Auto Analyse Below!!" mode={mode}/>
-          </Route>
-    </Switch>
+          {/* </Route> */}
+    {/* </Switch> */}
     </div>
-    </Router>
+    {/* </Router> */}
     </>
   );
 }
